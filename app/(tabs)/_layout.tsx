@@ -18,19 +18,6 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
-        options={{
-          title: "All Products",
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "home-sharp" : "home-outline"}
-              color={color}
-              size={24}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="ordering"
         options={{
           title: "Ordering",
@@ -45,6 +32,20 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "All Products",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "home-sharp" : "home-outline"}
+              color={color}
+              size={24}
+            />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="reduced"
         options={{
