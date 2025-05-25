@@ -45,7 +45,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
       <Tabs.Screen
         name="reduced"
         options={{
@@ -53,6 +52,19 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "arrow-down-circle" : "arrow-down"}
+              color={focused ? "red" : "grey"}
+              size={24}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="AddProducts"
+        options={{
+          title: "Add Products",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "add-circle" : "add"}
               color={focused ? "red" : "grey"}
               size={24}
             />
