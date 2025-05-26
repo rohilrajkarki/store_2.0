@@ -24,7 +24,7 @@ const Item = ({
           </View>
 
           <View className="w-[48%]">
-            <ThemedText className="text-green-800">
+            <ThemedText className="text-green-200">
               Shelf Count: {shelfCount}
             </ThemedText>
           </View>
