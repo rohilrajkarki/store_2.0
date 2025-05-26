@@ -27,7 +27,7 @@ export default function Ordering() {
     }, [])
   );
 
-  console.log(" ordering---products=>", products);
+  // console.log(" ordering---products=>", products);
 
   return (
     <View className="flex-1 bg-[#25292e] p-4 w-full">
