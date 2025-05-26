@@ -4,7 +4,7 @@ import { ThemedText } from "./ThemedText";
 
 const Item = ({
   name,
-  from,
+  fromDealer,
   shelfCount,
   stockCount,
   reducedCount,
@@ -20,7 +20,7 @@ const Item = ({
             <ThemedText>Name: {name}</ThemedText>
           </View>
           <View className="w-[48%]">
-            <ThemedText>From: {from}</ThemedText>
+            <ThemedText>From: {fromDealer}</ThemedText>
           </View>
 
           <View className="w-[48%]">

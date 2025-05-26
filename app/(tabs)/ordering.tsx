@@ -1,8 +1,9 @@
 import Item from "@/components/Item";
 import Search from "@/components/Search";
 import { getProducts } from "@/lib/db";
+import { useFocusEffect } from "@react-navigation/native";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { FlatList, View } from "react-native";
 
 export default function Ordering() {
@@ -15,15 +16,18 @@ export default function Ordering() {
 
   const [products, setProducts] = useState<any[]>([]);
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      const data = await getProducts();
-      setProducts(data);
-    };
-    loadProducts();
-  }, []);
+  const loadProducts = async () => {
+    const data = await getProducts();
+    setProducts(data);
+  };
 
-  console.log("products=>", products);
+  useFocusEffect(
+    useCallback(() => {
+      loadProducts();
+    }, [])
+  );
+
+  console.log(" ordering---products=>", products);
 
   return (
     <View className="flex-1 bg-[#25292e] p-4 w-full">

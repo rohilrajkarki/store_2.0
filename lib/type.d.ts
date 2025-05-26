@@ -1,7 +1,7 @@
 declare interface ItemType {
   id: string;
   name: string;
-  from: string;
+  fromDealer: string;
   shelfCount: number;
   stockCount: number;
   reducedCount: number;
