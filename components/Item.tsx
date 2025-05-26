@@ -6,6 +6,7 @@ const Item = ({
   name,
   fromDealer,
   shelfCount,
+  shelfCapacity,
   stockCount,
   reducedCount,
   totalCount,
@@ -45,7 +46,7 @@ const Item = ({
 
           <View className="w-[48%]">
             <ThemedText className="text-yellow-300">
-              Shelf Capacity: 2/4
+              Shelf Capacity: :{shelfCapacity}
             </ThemedText>
           </View>
           <View className="w-[48%]">

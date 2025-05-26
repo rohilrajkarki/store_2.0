@@ -9,6 +9,7 @@ export const initDB = () => {
       name TEXT,
       fromDealer TEXT,
       shelfCount INTEGER,
+      shelfCapacity INTEGER,
       stockCount INTEGER,
       reducedCount INTEGER,
       totalCount INTEGER,
@@ -21,6 +22,7 @@ export const insertProduct = async (product: {
   name: string;
   from: string;
   shelfCount: string;
+  shelfCapacity: string;
   stockCount: string;
   reducedCount: string;
   totalCount: string;
@@ -28,12 +30,13 @@ export const insertProduct = async (product: {
 }) => {
   await db.runAsync(
     `INSERT INTO products 
-     (name, fromDealer, shelfCount, stockCount, reducedCount, totalCount, toOrderCount)
+     (name, fromDealer, shelfCount,shelfCapacity, stockCount, reducedCount, totalCount, toOrderCount)
      VALUES (?, ?, ?, ?, ?, ?, ?);`,
     [
       product.name,
       product.from,
       parseInt(product.shelfCount),
+      parseInt(product.shelfCapacity),
       parseInt(product.stockCount),
       parseInt(product.reducedCount),
       parseInt(product.totalCount),
@@ -63,6 +66,7 @@ export const updateProduct = async (
     name: string;
     fromDealer: string;
     shelfCount: number;
+    shelfCapacity: number;
     stockCount: number;
     reducedCount: number;
     totalCount: number;
@@ -74,6 +78,7 @@ export const updateProduct = async (
       name = ?, 
       fromDealer = ?, 
       shelfCount = ?, 
+      shelfCapacity = ?, 
       stockCount = ?, 
       reducedCount = ?, 
       totalCount = ?, 
@@ -83,6 +88,7 @@ export const updateProduct = async (
       updatedProduct.name,
       updatedProduct.fromDealer,
       updatedProduct.shelfCount,
+      updatedProduct.shelfCapacity,
       updatedProduct.stockCount,
       updatedProduct.reducedCount,
       updatedProduct.totalCount,

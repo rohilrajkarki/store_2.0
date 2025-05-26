@@ -9,15 +9,6 @@ const Product = () => {
   const router = useRouter();
   const [product, setProduct] = useState<any>(null);
 
-  // useEffect(() => {
-  //   if (id) {
-  //     const numericId = parseInt(id as string, 10);
-  //     getProductById(numericId).then((data) => {
-  //       setProduct(data);
-  //     });
-  //   }
-  // }, [id]);
-
   useFocusEffect(
     useCallback(() => {
       const fetchProduct = async () => {
@@ -33,17 +24,14 @@ const Product = () => {
       "Confirm Delete",
       "Are you sure you want to delete this product?",
       [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
+        { text: "Cancel", style: "cancel" },
         {
           text: "Delete",
           style: "destructive",
           onPress: async () => {
             await deleteProduct(parseInt(id as string, 10));
             Alert.alert("Deleted", "Product has been deleted.");
-            router.back(); // Go back to previous screen
+            router.back();
           },
         },
       ]
@@ -63,39 +51,47 @@ const Product = () => {
   }
 
   return (
-    <ScrollView className="flex-1 bg-black p-4">
-      <Text className="text-white text-2xl font-bold mb-6">
+    <ScrollView className="flex-1 bg-neutral-900 p-4">
+      <Text className="text-white text-3xl font-extrabold mb-6 text-center">
         Product Details
       </Text>
 
-      {[
-        { label: "Name", value: product.name },
-        { label: "Dealer", value: product.fromDealer },
-        { label: "Shelf Count", value: product.shelfCount },
-        { label: "Stock Count", value: product.stockCount },
-        { label: "Reduced Count", value: product.reducedCount },
-        { label: "Total Count", value: product.totalCount },
-        { label: "To Order Count", value: product.toOrderCount },
-      ].map((item, index) => (
-        <View key={index} className="mb-4">
-          <Text className="text-gray-400 text-sm">{item.label}</Text>
-          <Text className="text-white text-lg font-semibold">{item.value}</Text>
-        </View>
-      ))}
+      <View className="bg-neutral-800 rounded-2xl p-4 shadow-lg">
+        {[
+          { label: "Name", value: product.name },
+          { label: "Dealer", value: product.fromDealer },
+          { label: "Shelf Count", value: product.shelfCount },
+          { label: "Shelf Capacity", value: product.shelfCapacity },
+          { label: "Stock Count", value: product.stockCount },
+          { label: "Reduced Count", value: product.reducedCount },
+          { label: "Total Count", value: product.totalCount },
+          { label: "To Order Count", value: product.toOrderCount },
+        ].map((item, index) => (
+          <View
+            key={index}
+            className="flex-row justify-between items-center mb-3 border-b border-gray-700 pb-3 last:border-b-0"
+          >
+            <Text className="text-gray-400 text-sm w-1/2">{item.label}</Text>
+            <Text className="text-white text-base font-medium text-right w-1/2">
+              {item.value}
+            </Text>
+          </View>
+        ))}
+      </View>
 
-      <View className="flex-row justify-between mt-8">
+      <View className="flex-row justify-between mt-8 space-x-4">
         <TouchableOpacity
-          className="bg-blue-600 px-4 py-2 rounded-lg"
           onPress={handleEdit}
+          className="flex-1 bg-blue-600 py-3 rounded-xl items-center shadow-md"
         >
-          <Text className="text-white font-semibold">Edit</Text>
+          <Text className="text-white font-semibold text-base">Edit</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          className="bg-red-600 px-4 py-2 rounded-lg"
           onPress={handleDelete}
+          className="flex-1 bg-red-600 py-3 rounded-xl items-center shadow-md"
         >
-          <Text className="text-white font-semibold">Delete</Text>
+          <Text className="text-white font-semibold text-base">Delete</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

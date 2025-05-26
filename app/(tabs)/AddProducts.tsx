@@ -14,6 +14,7 @@ const AddProducts = () => {
     name: "",
     from: "",
     shelfCount: "",
+    shelfCapacity: "",
     stockCount: "",
     reducedCount: "",
     totalCount: "",
@@ -42,6 +43,7 @@ const AddProducts = () => {
         name: "",
         from: "",
         shelfCount: "",
+        shelfCapacity: "",
         stockCount: "",
         reducedCount: "",
         totalCount: "",
@@ -94,6 +96,17 @@ const AddProducts = () => {
           className="bg-white text-black p-3 rounded-lg"
           value={productDetails.shelfCount}
           onChangeText={(text) => handleChange("shelfCount", text)}
+        />
+      </View>
+      <View className="mb-4">
+        <Text className="text-white mb-1 font-semibold">Shelf Capicity</Text>
+        <TextInput
+          placeholder="e.g., 10"
+          keyboardType="numeric"
+          placeholderTextColor="#999"
+          className="bg-white text-black p-3 rounded-lg"
+          value={productDetails.shelfCapacity}
+          onChangeText={(text) => handleChange("shelfCapacity", text)}
         />
       </View>
 

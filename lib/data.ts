@@ -2,7 +2,7 @@ export const sampleItems: ItemType[] = [
   {
     id: "1",
     name: "Chicken Thigh",
-    from: "MT Barker",
+    fromDealer: "MT Barker",
     shelfCount: 5,
     stockCount: 10,
     reducedCount: 2,
@@ -13,7 +13,7 @@ export const sampleItems: ItemType[] = [
   {
     id: "2",
     name: "Beef Mince",
-    from: "Jazella",
+    fromDealer: "Jazella",
     shelfCount: 3,
     stockCount: 7,
     reducedCount: 1,

@@ -19,6 +19,7 @@ const EditProduct = () => {
     name: "",
     fromDealer: "",
     shelfCount: "",
+    shelfCapacity: "",
     stockCount: "",
     reducedCount: "",
     totalCount: "",
@@ -30,9 +31,11 @@ const EditProduct = () => {
       const productId = parseInt(id as string, 10);
       getProductById(productId).then((data) => {
         setProduct(data);
+        //@ts-ignore
         setForm({
           name: data.name,
           fromDealer: data.fromDealer,
+          shelfCapacity: data.shelfCapacity,
           shelfCount: data.shelfCount.toString(),
           stockCount: data.stockCount.toString(),
           reducedCount: data.reducedCount.toString(),
@@ -59,6 +62,7 @@ const EditProduct = () => {
       await updateProduct(parseInt(id as string, 10), {
         ...form,
         shelfCount: parseInt(form.shelfCount),
+        shelfCapacity: parseInt(form.shelfCapacity),
         stockCount: parseInt(form.stockCount),
         reducedCount: parseInt(form.reducedCount),
         totalCount: parseInt(form.totalCount),
@@ -89,6 +93,11 @@ const EditProduct = () => {
         { label: "Product Name", field: "name" },
         { label: "Dealer", field: "fromDealer" },
         { label: "Shelf Count", field: "shelfCount", keyboardType: "numeric" },
+        {
+          label: "Shelf Capacity",
+          field: "shelfCapacity",
+          keyboardType: "numeric",
+        },
         { label: "Stock Count", field: "stockCount", keyboardType: "numeric" },
         {
           label: "Reduced Count",
