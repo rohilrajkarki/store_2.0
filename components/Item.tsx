@@ -6,6 +6,7 @@ const Item = ({
   name,
   fromDealer,
   shelfCount,
+  expiryDate,
   shelfCapacity,
   stockCount,
   reducedCount,
@@ -34,7 +35,11 @@ const Item = ({
               Stock Count: {stockCount}
             </ThemedText>
           </View>
-
+          <View className="w-[48%]">
+            <ThemedText className="text-purple-400">
+              To Order Count: {expiryDate}
+            </ThemedText>
+          </View>
           <View className="w-[48%]">
             <ThemedText className="text-red-400">
               Reduced Count: {reducedCount}

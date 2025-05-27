@@ -24,6 +24,7 @@ const EditProduct = () => {
     reducedCount: "",
     totalCount: "",
     toOrderCount: "",
+    expiryDate: "",
   });
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const EditProduct = () => {
           reducedCount: data.reducedCount.toString(),
           totalCount: data.totalCount.toString(),
           toOrderCount: data.toOrderCount.toString(),
+          expiryDate: data.expiryDate,
         });
       });
     }
@@ -67,6 +69,7 @@ const EditProduct = () => {
         reducedCount: parseInt(form.reducedCount),
         totalCount: parseInt(form.totalCount),
         toOrderCount: parseInt(form.toOrderCount),
+        expiryDate: form.expiryDate,
       });
 
       Alert.alert("Success", "Product updated successfully");
@@ -92,6 +95,7 @@ const EditProduct = () => {
       {[
         { label: "Product Name", field: "name" },
         { label: "Dealer", field: "fromDealer" },
+        { label: "Expiry Date", field: "expiryDate" },
         { label: "Shelf Count", field: "shelfCount", keyboardType: "numeric" },
         {
           label: "Shelf Capacity",

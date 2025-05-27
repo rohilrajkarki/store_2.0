@@ -60,6 +60,7 @@ const Product = () => {
         {[
           { label: "Name", value: product.name },
           { label: "Dealer", value: product.fromDealer },
+          { label: "expiryDate", value: product.expiryDate },
           { label: "Shelf Count", value: product.shelfCount },
           { label: "Shelf Capacity", value: product.shelfCapacity },
           { label: "Stock Count", value: product.stockCount },

@@ -1,7 +1,9 @@
 import { insertProduct } from "@/lib/db";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import {
   Alert,
+  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -12,21 +14,31 @@ import {
 const AddProducts = () => {
   const [productDetails, setProductDetails] = useState({
     name: "",
-    from: "",
+    fromDealer: "",
     shelfCount: "",
     shelfCapacity: "",
     stockCount: "",
     reducedCount: "",
     totalCount: "",
     toOrderCount: "",
+    expiryDate: "",
   });
+
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const handleChange = (key: keyof typeof productDetails, value: string) => {
     setProductDetails({ ...productDetails, [key]: value });
   };
 
+  const handleDateChange = (event: any, selectedDate?: Date) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      const isoDate = selectedDate.toISOString().split("T")[0]; // YYYY-MM-DD
+      handleChange("expiryDate", isoDate);
+    }
+  };
+
   const handleSubmit = async () => {
-    // Validate fields
     for (const [key, value] of Object.entries(productDetails)) {
       if (value.trim() === "") {
         Alert.alert("Validation Error", `Please enter ${key}`);
@@ -35,19 +47,30 @@ const AddProducts = () => {
     }
 
     try {
-      await insertProduct(productDetails);
+      const payload = {
+        ...productDetails,
+        shelfCount: parseInt(productDetails.shelfCount),
+        shelfCapacity: parseInt(productDetails.shelfCapacity),
+        stockCount: parseInt(productDetails.stockCount),
+        reducedCount: parseInt(productDetails.reducedCount),
+        totalCount: parseInt(productDetails.totalCount),
+        toOrderCount: parseInt(productDetails.toOrderCount),
+      };
+
+      await insertProduct(payload);
+
       Alert.alert("Success", "Product added successfully");
 
-      // Optionally reset the form
       setProductDetails({
         name: "",
-        from: "",
+        fromDealer: "",
         shelfCount: "",
         shelfCapacity: "",
         stockCount: "",
         reducedCount: "",
         totalCount: "",
         toOrderCount: "",
+        expiryDate: "",
       });
     } catch (error) {
       console.error("Insert failed:", error);
@@ -65,97 +88,74 @@ const AddProducts = () => {
         Add New Product
       </Text>
 
-      <View className="mb-4">
-        <Text className="text-white mb-1 font-semibold">Product Name</Text>
-        <TextInput
-          placeholder="e.g., Chicken Breast"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.name}
-          onChangeText={(text) => handleChange("name", text)}
-        />
-      </View>
+      {[
+        {
+          label: "Product Name",
+          field: "name",
+          placeholder: "e.g., Chicken Breast",
+        },
+        {
+          label: "Dealer",
+          field: "fromDealer",
+          placeholder: "e.g., Mt Barker",
+        },
+        { label: "Shelf Count", field: "shelfCount", keyboardType: "numeric" },
+        {
+          label: "Shelf Capacity",
+          field: "shelfCapacity",
+          keyboardType: "numeric",
+        },
+        { label: "Stock Count", field: "stockCount", keyboardType: "numeric" },
+        {
+          label: "Reduced Count",
+          field: "reducedCount",
+          keyboardType: "numeric",
+        },
+        { label: "Total Count", field: "totalCount", keyboardType: "numeric" },
+        {
+          label: "To Order Count",
+          field: "toOrderCount",
+          keyboardType: "numeric",
+        },
+      ].map((item, index) => (
+        <View key={index} className="mb-4">
+          <Text className="text-white mb-1 font-semibold">{item.label}</Text>
+          <TextInput
+            placeholder={item.placeholder || ""}
+            placeholderTextColor="#999"
+            className="bg-white text-black p-3 rounded-lg"
+            keyboardType={item.keyboardType || "default"}
+            value={productDetails[item.field]}
+            onChangeText={(text) =>
+              handleChange(item.field as keyof typeof productDetails, text)
+            }
+          />
+        </View>
+      ))}
 
+      {/* Expiry Date Picker */}
       <View className="mb-4">
-        <Text className="text-white mb-1 font-semibold">Dealer</Text>
-        <TextInput
-          placeholder="e.g., Mt Barker"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.from}
-          onChangeText={(text) => handleChange("from", text)}
-        />
-      </View>
-
-      <View className="mb-4">
-        <Text className="text-white mb-1 font-semibold">Shelf Count</Text>
-        <TextInput
-          placeholder="e.g., 10"
-          keyboardType="numeric"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.shelfCount}
-          onChangeText={(text) => handleChange("shelfCount", text)}
-        />
-      </View>
-      <View className="mb-4">
-        <Text className="text-white mb-1 font-semibold">Shelf Capicity</Text>
-        <TextInput
-          placeholder="e.g., 10"
-          keyboardType="numeric"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.shelfCapacity}
-          onChangeText={(text) => handleChange("shelfCapacity", text)}
-        />
-      </View>
-
-      <View className="mb-4">
-        <Text className="text-white mb-1 font-semibold">Stock Count</Text>
-        <TextInput
-          placeholder="e.g., 20"
-          keyboardType="numeric"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.stockCount}
-          onChangeText={(text) => handleChange("stockCount", text)}
-        />
-      </View>
-
-      <View className="mb-4">
-        <Text className="text-white mb-1 font-semibold">Reduced Count</Text>
-        <TextInput
-          placeholder="e.g., 2"
-          keyboardType="numeric"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.reducedCount}
-          onChangeText={(text) => handleChange("reducedCount", text)}
-        />
-      </View>
-
-      <View className="mb-4">
-        <Text className="text-white mb-1 font-semibold">Total Count</Text>
-        <TextInput
-          placeholder="e.g., 30"
-          keyboardType="numeric"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.totalCount}
-          onChangeText={(text) => handleChange("totalCount", text)}
-        />
-      </View>
-
-      <View className="mb-6">
-        <Text className="text-white mb-1 font-semibold">To Order Count</Text>
-        <TextInput
-          placeholder="e.g., 5"
-          keyboardType="numeric"
-          placeholderTextColor="#999"
-          className="bg-white text-black p-3 rounded-lg"
-          value={productDetails.toOrderCount}
-          onChangeText={(text) => handleChange("toOrderCount", text)}
-        />
+        <Text className="text-white mb-1 font-semibold">Expiry Date</Text>
+        <TouchableOpacity
+          onPress={() => setShowDatePicker(true)}
+          className="bg-white p-3 rounded-lg"
+        >
+          <Text className="text-black">
+            {productDetails.expiryDate || "Select expiry date"}
+          </Text>
+        </TouchableOpacity>
+        {showDatePicker && (
+          <DateTimePicker
+            value={
+              productDetails.expiryDate
+                ? new Date(productDetails.expiryDate)
+                : new Date()
+            }
+            mode="date"
+            display={Platform.OS === "ios" ? "spinner" : "default"}
+            onChange={handleDateChange}
+          />
+        )}
       </View>
 
       <TouchableOpacity
