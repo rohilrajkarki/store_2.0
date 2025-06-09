@@ -49,12 +49,12 @@ const AddProducts = () => {
     try {
       const payload = {
         ...productDetails,
-        shelfCount: parseInt(productDetails.shelfCount),
-        shelfCapacity: parseInt(productDetails.shelfCapacity),
-        stockCount: parseInt(productDetails.stockCount),
-        reducedCount: parseInt(productDetails.reducedCount),
-        totalCount: parseInt(productDetails.totalCount),
-        toOrderCount: parseInt(productDetails.toOrderCount),
+        // shelfCount: parseInt(productDetails.shelfCount),
+        // shelfCapacity: parseInt(productDetails.shelfCapacity),
+        // stockCount: parseInt(productDetails.stockCount),
+        // reducedCount: parseInt(productDetails.reducedCount),
+        // totalCount: parseInt(productDetails.totalCount),
+        // toOrderCount: parseInt(productDetails.toOrderCount),
       };
 
       await insertProduct(payload);
@@ -124,7 +124,7 @@ const AddProducts = () => {
             placeholder={item.placeholder || ""}
             placeholderTextColor="#999"
             className="bg-white text-black p-3 rounded-lg"
-            keyboardType={item.keyboardType || "default"}
+            // keyboardType={item.keyboardType || "default"}
             value={productDetails[item.field]}
             onChangeText={(text) =>
               handleChange(item.field as keyof typeof productDetails, text)

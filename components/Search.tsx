@@ -1,49 +1,18 @@
-import { useTheme } from "@react-navigation/native";
-import React, { useState } from "react";
-import { StyleSheet, TextInput } from "react-native";
-import { ThemedView } from "./ThemedView";
+import { TextInput } from "react-native";
 
-const Search = () => {
-  const { colors } = useTheme();
-  const [query, setQuery] = useState("");
-
-  return (
-    <ThemedView style={styles.container}>
-      <TextInput
-        style={[
-          styles.input,
-          { color: colors.text, borderColor: colors.primary },
-        ]}
-        placeholder="Search products..."
-        placeholderTextColor="#888"
-        value={query}
-        onChangeText={setQuery}
-      />
-    </ThemedView>
-  );
+type Props = {
+  value: string;
+  onChangeText: (text: string) => void;
 };
 
-const styles = StyleSheet.create({
-  // container: {
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
-  container: {
-    // backgroundColor: "#25292e",
-    width: "100%",
-  },
-  input: {
-    width: "100%",
-    height: 40,
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    backgroundColor: "#1c1c1e",
-    marginBottom: 10,
-  },
-  text: {
-    color: "#fff",
-  },
-});
-
-export default Search;
+export default function Search({ value, onChangeText }: Props) {
+  return (
+    <TextInput
+      placeholder="Search by name or expiry date..."
+      placeholderTextColor="#aaa"
+      className="bg-white text-black p-3 rounded-lg"
+      value={value}
+      onChangeText={onChangeText}
+    />
+  );
+}

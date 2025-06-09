@@ -21,7 +21,7 @@ export const initDB = () => {
 
 export const insertProduct = async (product: {
   name: string;
-  from: string;
+  fromDealer: string;
   shelfCount: string;
   shelfCapacity: string;
   stockCount: string;
@@ -36,7 +36,7 @@ export const insertProduct = async (product: {
      VALUES (?, ?, ?, ?, ?, ?, ?,?,?);`,
     [
       product.name,
-      product.from,
+      product.fromDealer,
       parseInt(product.shelfCount),
       parseInt(product.shelfCapacity),
       parseInt(product.stockCount),
