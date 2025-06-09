@@ -12,6 +12,7 @@ export const initDB = () => {
       shelfCapacity INTEGER,
       stockCount INTEGER,
       reducedCount INTEGER,
+      deliveredCount INTEGER,
       totalCount INTEGER,
       toOrderCount INTEGER,
       expiryDate TEXT
@@ -26,13 +27,14 @@ export const insertProduct = async (product: {
   shelfCapacity: string;
   stockCount: string;
   reducedCount: string;
+  deliveredCount: string;
   totalCount: string;
   toOrderCount: string;
   expiryDate: string;
 }) => {
   await db.runAsync(
     `INSERT INTO products 
-     (name, fromDealer, shelfCount,shelfCapacity, stockCount, reducedCount, totalCount, toOrderCount,expiryDate )
+     (name, fromDealer, shelfCount,shelfCapacity, stockCount, reducedCount, totalCount, deliveredCount, toOrderCount,expiryDate )
      VALUES (?, ?, ?, ?, ?, ?, ?,?,?);`,
     [
       product.name,
@@ -41,6 +43,7 @@ export const insertProduct = async (product: {
       parseInt(product.shelfCapacity),
       parseInt(product.stockCount),
       parseInt(product.reducedCount),
+      parseInt(product.deliveredCount),
       parseInt(product.totalCount),
       parseInt(product.toOrderCount),
       product.expiryDate,
@@ -72,6 +75,7 @@ export const updateProduct = async (
     shelfCapacity: number;
     stockCount: number;
     reducedCount: number;
+    deliveredCount: number;
     totalCount: number;
     toOrderCount: number;
     expiryDate: string;
@@ -86,6 +90,7 @@ export const updateProduct = async (
       stockCount = ?, 
       reducedCount = ?, 
       totalCount = ?, 
+      deliveredCount = ?, 
       toOrderCount = ?,
       expiryDate = ?
      WHERE id = ?`,
@@ -97,6 +102,7 @@ export const updateProduct = async (
       updatedProduct.stockCount,
       updatedProduct.reducedCount,
       updatedProduct.totalCount,
+      updatedProduct.deliveredCount,
       updatedProduct.toOrderCount,
       updatedProduct.expiryDate,
       id,

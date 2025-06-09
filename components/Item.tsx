@@ -11,6 +11,7 @@ const Item = ({
   stockCount,
   reducedCount,
   totalCount,
+  deliveredCount,
   toOrderCount,
   onPress,
 }: ItemType) => {
@@ -47,6 +48,9 @@ const Item = ({
           </View>
           <View className="w-[48%]">
             <ThemedText>Total Count: {totalCount}</ThemedText>
+          </View>
+          <View className="w-[48%]">
+            <ThemedText>Delivered Count: {deliveredCount}</ThemedText>
           </View>
 
           <View className="w-[48%]">

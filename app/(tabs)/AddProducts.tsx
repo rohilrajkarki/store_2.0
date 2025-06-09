@@ -20,6 +20,7 @@ const AddProducts = () => {
     stockCount: "",
     reducedCount: "",
     totalCount: "",
+    deliveredCount: "",
     toOrderCount: "",
     expiryDate: "",
   });
@@ -69,6 +70,7 @@ const AddProducts = () => {
         stockCount: "",
         reducedCount: "",
         totalCount: "",
+        deliveredCount: "",
         toOrderCount: "",
         expiryDate: "",
       });
@@ -112,6 +114,11 @@ const AddProducts = () => {
           keyboardType: "numeric",
         },
         { label: "Total Count", field: "totalCount", keyboardType: "numeric" },
+        {
+          label: "Delivered Count",
+          field: "deliveredCount",
+          keyboardType: "numeric",
+        },
         {
           label: "To Order Count",
           field: "toOrderCount",

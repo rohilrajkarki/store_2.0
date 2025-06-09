@@ -22,6 +22,7 @@ type ProductDetails = {
   stockCount: string;
   reducedCount: string;
   totalCount: string;
+  deliveredCount: string;
   toOrderCount: string;
   expiryDate: string;
 };
@@ -50,6 +51,7 @@ const EditProduct = () => {
     stockCount: "",
     reducedCount: "",
     totalCount: "",
+    deliveredCount: "",
     toOrderCount: "",
     expiryDate: "",
   });
@@ -70,6 +72,7 @@ const EditProduct = () => {
             reducedCount: data.reducedCount?.toString() || "0",
             totalCount: data.totalCount?.toString() || "0",
             toOrderCount: data.toOrderCount?.toString() || "0",
+            deliveredCount: data.deliveredCount?.toString() || "0",
             expiryDate: data.expiryDate || "",
           });
         } catch (error) {
@@ -106,6 +109,7 @@ const EditProduct = () => {
         reducedCount: parseInt(productDetails.reducedCount),
         totalCount: parseInt(productDetails.totalCount),
         toOrderCount: parseInt(productDetails.toOrderCount),
+        deliveredCount: parseInt(productDetails.deliveredCount),
         expiryDate: productDetails.expiryDate,
       });
 

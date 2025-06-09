@@ -66,6 +66,7 @@ const Product = () => {
           { label: "Stock Count", value: product.stockCount },
           { label: "Reduced Count", value: product.reducedCount },
           { label: "Total Count", value: product.totalCount },
+          { label: "Delivered Count", value: product.deliveredCount },
           { label: "To Order Count", value: product.toOrderCount },
         ].map((item, index) => (
           <View

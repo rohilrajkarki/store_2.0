@@ -7,6 +7,7 @@ declare interface ItemType {
   stockCount: number;
   reducedCount: number;
   totalCount: number;
+  deliveredCount: number;
   shelfCapacity: string;
   toOrderCount: number;
   onPress?: () => void;
