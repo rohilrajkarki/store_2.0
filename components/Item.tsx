@@ -38,7 +38,7 @@ const Item = ({
           </View>
           <View className="w-[48%]">
             <ThemedText className="text-purple-400">
-              To Order Count: {expiryDate}
+              Expiry Date: {expiryDate}
             </ThemedText>
           </View>
           <View className="w-[48%]">

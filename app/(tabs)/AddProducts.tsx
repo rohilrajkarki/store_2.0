@@ -40,12 +40,12 @@ const AddProducts = () => {
   };
 
   const handleSubmit = async () => {
-    for (const [key, value] of Object.entries(productDetails)) {
-      if (value.trim() === "") {
-        Alert.alert("Validation Error", `Please enter ${key}`);
-        return;
-      }
-    }
+    // for (const [key, value] of Object.entries(productDetails)) {
+    //   if (value.trim() === "") {
+    //     Alert.alert("Validation Error", `Please enter ${key}`);
+    //     return;
+    //   }
+    // }
 
     try {
       const payload = {
@@ -89,7 +89,6 @@ const AddProducts = () => {
       <Text className="text-2xl font-bold text-white mb-6 text-center">
         Add New Product
       </Text>
-
       {[
         {
           label: "Product Name",

@@ -34,8 +34,8 @@ export const insertProduct = async (product: {
 }) => {
   await db.runAsync(
     `INSERT INTO products 
-     (name, fromDealer, shelfCount,shelfCapacity, stockCount, reducedCount, totalCount, deliveredCount, toOrderCount,expiryDate )
-     VALUES (?, ?, ?, ?, ?, ?, ?,?,?);`,
+     (name, fromDealer, shelfCount, shelfCapacity, stockCount, reducedCount, totalCount, deliveredCount, toOrderCount, expiryDate )
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?);`,
     [
       product.name,
       product.fromDealer,

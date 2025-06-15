@@ -1,6 +1,6 @@
 import { useColorScheme } from "@/hooks/useColorScheme.web";
 import { initDB } from "@/lib/db";
-import { migrateProductsTable } from "@/lib/migrateTable";
+// import { migrateProductsTable } from "@/lib/migrateTable";
 import {
   DarkTheme,
   DefaultTheme,
@@ -14,7 +14,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   useEffect(() => {
-    migrateProductsTable();
+    // migrateProductsTable();
     initDB();
   }, []);
 

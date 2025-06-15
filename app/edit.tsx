@@ -92,12 +92,12 @@ const EditProduct = () => {
   };
 
   const handleSave = async () => {
-    for (const [key, value] of Object.entries(productDetails)) {
-      if (value.trim() === "") {
-        Alert.alert("Validation Error", `Please fill in ${key}`);
-        return;
-      }
-    }
+    // for (const [key, value] of Object.entries(productDetails)) {
+    //   if (value.trim() === "") {
+    //     Alert.alert("Validation Error", `Please fill in ${key}`);
+    //     return;
+    //   }
+    // }
 
     try {
       setSaving(true);
