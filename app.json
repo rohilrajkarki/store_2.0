@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "store_2.0",
-    "slug": "store_2.0",
+    "slug": "store_2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.rohilkarki.store_2"
     },
     "web": {
       "bundler": "metro",
@@ -38,6 +39,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "561699d4-be90-42ee-b857-eb0042db76f3"
+      }
+    },
+    "owner": "rohilkarki"
   }
 }
